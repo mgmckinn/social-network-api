@@ -1,47 +1,46 @@
-const {schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
+const moment = require('moment');
 
-const emailValidation =function (email) {
-    let regex = /^[a-z0-9_\-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
-    return regex.test(String(email).toLowerCase());
-};
-
-const userSchema = new schema({
+const UserSchema = new Schema({
     username: {
         type: String,
-        required: true,
-        trim: true,
         unique: true,
+        required: true,
+        trim: true
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        validate: {
-            validator: emailValidation,
-            message: (email) => `${email.vaule} please enter a valid email address`,
-        },
-        },
-        thoughts: [
-            {
-                type: schema.types.objectId,
-                ref: "thought",
-            },
-        ],
-        friends: [
-            {type: schema.types.objectId,
-            ref: "user",
-        },
-        ],
+        match: [/.+@.+\..+/]
     },
+    thoughts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Thought'
+        }
+    ],
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
+},
     {
         toJSON: {
-            virtual: true,
+            virtuals: true
         },
-        id:false,
+        id: false
     }
 );
-userSchema.virtual("friendCount").get(function () {
+
+UserSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
-const user = model("user", userSchema);
-module.exports = user;
+
+// create the User model using the UserSchema
+const User = model('User', UserSchema);
+
+// export the User model
+module.exports = User;
