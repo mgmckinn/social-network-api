@@ -1,12 +1,11 @@
 {
-  "name": "your-thoughts-mg",
+  "name": "social-network-api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "kill -9 $(lsof -ti:3000,3001) && npm start",
-    "watch": "npm run watch"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +20,7 @@
   "homepage": "https://github.com/mgmckinn/your-thoughts-mg#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "moment": "^2.29.3",
-    "mongoose": "^6.3.0"
-  },
-  "devDependencies": {
-    "morgan": "^1.10.0",
+    "mongoose": "^6.3.0",
     "nodemon": "^2.0.15"
   }
 }

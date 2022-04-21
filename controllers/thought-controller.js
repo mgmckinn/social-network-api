@@ -1,6 +1,6 @@
-const {Thought, User} = require("../../models");
+const { Thought, User } = require("../models");
 
-const thoughtControllers = {
+const thoughtController = {
     //get all
     getAllThoughts(req, res) {
         Thought.find({})
@@ -108,7 +108,7 @@ createReaction({params,body}, res) {
             });
             return;
         }
-        res.json(dbReactiontData);
+        res.json(thoughtData);
     })
     .catch((err) => {
         console.log(err);
@@ -142,4 +142,4 @@ deleteReaction({params}, res) {
 
 };
 
-module.exports = thoughtControllers;
+module.exports = thoughtController;

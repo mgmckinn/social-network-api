@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const {
     getAllUser,
     getUserById,
@@ -6,7 +7,7 @@ const {
     updateUser,
     deleteUser,
     addFriend,
-    deleteFriend,
+    deleteFriend
 } = require('../../controllers/user-controller');
 
 router
@@ -20,7 +21,8 @@ router
 .put(updateUser)
 .delete(deleteUser);
 
-router.route("/:id/friend/:friendId")
+router
+.route("/:id/friend/:friendId")
 .post(addFriend)
 .delete(deleteFriend);
 

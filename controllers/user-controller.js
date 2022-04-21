@@ -13,14 +13,7 @@ const {User,Thought} = require("../models");
              res.status(400).json(err);
          });
      },
-        /* .populate({
-             path: "thoughts",
-             select: "-__v",
-         })
-         .populate({
-             path: "friends",
-             select: "-__v",
-         })*/
+
       
          //get user by ID
      getUserById({params}, res) {
